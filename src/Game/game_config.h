@@ -32,11 +32,12 @@ inline int tileCoord(int pixels)
 								UNITS
 ********************************************************************/
 
-const double defaultUnitSpeed = 30;
-
 const double defaultIdleLapse = 0.3; // in seconds
 const double defaultActiveLapse = 0.1; // in seconds
 
+const double heroSpeed = 30;
+const double heroWidth = 75;
+const double heroHeight = 75;
 
 
 

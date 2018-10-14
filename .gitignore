@@ -31,12 +31,16 @@
 *.out
 *.app
 
-#code::blocks generated
+# code::blocks generated
 bin/
 obj/
 *.layout
 
-#*.depend
-#*.cbp
+*.depend
+*.cbp
 
+# from clion?
 *.cscope_file_list
+
+# vim swap files
+*.swp

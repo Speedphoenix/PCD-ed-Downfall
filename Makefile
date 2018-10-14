@@ -10,7 +10,7 @@ GAMEPATH		=	src/Game
 
 DEBUGFLAGS		=	-g
 
-RELEASEFLAGS	=	-O3
+RELEASEFLAGS	=	-O3 -D _NO_TEST_
 
 WARNINGS		=	-Wall -Wshadow -Wswitch-enum -Wundef	\
 					-Wredundant-decls -Wcast-align -Winline	\
@@ -21,7 +21,6 @@ WARNINGS		=	-Wall -Wshadow -Wswitch-enum -Wundef	\
 EXTRAWFLAGS		=	-Wextra -Wfloat-equal -Weffc++			\
 					-Wunreachable-code -Wswitch-default		\
 					-Wmissing-declarations
-					
 
 DEFAULTFLAGS	=	-std=c++11 -fexceptions $(WARNINGS)
 
@@ -33,9 +32,9 @@ include $(ENGINEPATH)/Makefile.eng
 ENGINEDIRS		:=	$(addprefix $(ENGINEPATH)/, $(ENGINEDIRS))
 
 SRDIRS			:=	$(GAMEPATH)								\
-#					$(GAMEPATH)/Animations					\
+					$(GAMEPATH)/Animations					\
+					$(GAMEPATH)/GameObjects					\
 #					$(GAMEPATH)/Behaviours					\
-#					$(GAMEPATH)/GameObjects					\
 #					$(ENGINEDIRS)
 
 INCLUDEPFLAGS	:=	$(addprefix -I, $(SRDIRS))				\
@@ -69,7 +68,7 @@ $(NAME): engine $(OBJ)
 all: $(NAME)
 
 engine:
-	$(MAKE) -C $(ENGINEPATH)
+	$(MAKE) -C $(ENGINEPATH) $(MAKECMDGOALS)
 
 debug: CXXFLAGS += $(DEBUGFLAGS)
 debug: $(NAME)

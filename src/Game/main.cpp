@@ -1,18 +1,17 @@
-
 #include "allegroImplem.h"
 #include "colors.h"
+#include "game_config.h"
 #include "debugNerrors.h"
 
-#include "S2BContainer.h"
+#include "SpritesContainer.h"
+#include "DownfContainer.h"
+#include "Player.h"
 
-#include "GameObjects/Unit.h"
 
 using namespace std;
 
-
 namespace test {
-	maketestSprites();
-	void maketest();
+	void maketestSprites();
 }
 
 int main(int argc, char* argv[])
@@ -23,25 +22,27 @@ int main(int argc, char* argv[])
 	}
 	catch (const char* e)
 	{
-		cerr << endl << e << endl;
+		ES(e)
 	}
 
-	SpritesContainer sprites;
-	S2BContainer theGame(60, 45);
+	SpritesContainer* sprites = new SpritesContainer();
+	DownfContainer* theGame = new DownfContainer(60, 45);
 
 	test::maketestSprites();
-	test::maketest();
-	theGame.start();
+	theGame->addPlayer(new Player());
+	theGame->start();
 
 	double elapsed = 0.02;
 
-	while(!theGame.shouldStop())
+	while(!theGame->shouldStop())
 	{
-
-		theGame.update(elapsed*10);
+		theGame->update(elapsed*10);
 
 		al_rest(elapsed);
 	}
+
+	delete theGame;
+	delete sprites;
 
 	closeAlleg();
 	return 0;
@@ -58,17 +59,6 @@ void maketestSprites()
 
 	SpritesContainer::instance()->addSprite(TEST_OLD_MONSTER, al_load_bitmap(TEST_OLD_MONSTER_FILE));
 	SpritesContainer::instance()->addSprite(TEST_OLD_TILES, al_load_bitmap(TEST_OLD_TILES_FILE));
-}
-
-void maketest()
-{
-	//this will automatically add the unit to this GameContainer
-	Unit* newUnit = new Unit(10.0, 10.0);
-
-	newUnit->maketest();
-
-	//gameContainer's map is already a test from its constructor
-	//default camera should work just fine
 }
 
 }
