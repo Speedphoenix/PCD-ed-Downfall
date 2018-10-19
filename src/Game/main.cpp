@@ -6,11 +6,13 @@
 #include "SpritesContainer.h"
 #include "DownfContainer.h"
 #include "Player.h"
+#include "Enemy.h"
 
 
 using namespace std;
 
 namespace test {
+	void makeTest();
 	void maketestSprites();
 }
 
@@ -27,9 +29,11 @@ int main(int argc, char* argv[])
 
 	SpritesContainer* sprites = new SpritesContainer();
 	DownfContainer* theGame = new DownfContainer(60, 45);
+	Player *mainPlayer;
 
 	test::maketestSprites();
-	theGame->addPlayer(new Player());
+	mainPlayer = new Player(9);
+	theGame->addPlayer(mainPlayer);
 	theGame->start();
 
 	double elapsed = 0.02;
@@ -51,6 +55,11 @@ int main(int argc, char* argv[])
 
 namespace test {
 
+void makeTest()
+{
+	new Enemy(300, 300);
+}
+
 ///FOR TESTING PURPOSES
 void maketestSprites()
 {
@@ -59,6 +68,8 @@ void maketestSprites()
 
 	SpritesContainer::instance()->addSprite(TEST_OLD_MONSTER, al_load_bitmap(TEST_OLD_MONSTER_FILE));
 	SpritesContainer::instance()->addSprite(TEST_OLD_TILES, al_load_bitmap(TEST_OLD_TILES_FILE));
+	SpritesContainer::instance()->addSprite(TEST_TELEPORT_THINGY, al_load_bitmap(TEST_TELEPORT_THINGY_FILE));
+	SpritesContainer::instance()->addSprite(TEST_ENEMY_SCOPE, al_load_bitmap(TEST_ENEMY_SCOPE_FILE));
 }
 
 }
