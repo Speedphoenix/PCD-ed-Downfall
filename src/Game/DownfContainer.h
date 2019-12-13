@@ -1,5 +1,5 @@
-#ifndef S2BCONTAINER_H
-#define S2BCONTAINER_H
+#ifndef DOWNFCONTAINER_H
+#define DOWNFCONTAINER_H
 
 #include "GameContainer.h"
 #include "GameMap.h"
@@ -53,4 +53,4 @@ class DownfContainer : public GameContainer
 
 };
 
-#endif // S2BCONTAINER_H
+#endif // DOWNFCONTAINER_H
